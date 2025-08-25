@@ -1,0 +1,10 @@
+select
+to_timestamp(TIME) as STARTED_TIME,
+DATE(TIME) AS STARTED_DATE,
+HOUR(TIME) AS START_HOUR,
+CASE WHEN DAYNAME(to_timestamp(TIME)) in ('Sat','Sun') THEN 'WEEKEND' ELSE 'BUSINESSDAY' END AS DAY_TYPE,
+CASE WHEN MONTH(to_timestamp(TIME)) in (12,1,2) THEN 'WINTER'
+WHEN MONTH(to_timestamp(TIME)) in (3,4,5) THEN 'SPRIN'
+WHEN MONTH(to_timestamp(TIME)) in (6,7,8) THEN 'SUMMER' ELSE 'AUTUMN' END AS STATION_OF_YEAR
+
+from {{ source('dev_bt', 'WEATHER') }}
