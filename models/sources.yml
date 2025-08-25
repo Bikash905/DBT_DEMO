@@ -1,0 +1,7 @@
+version: 2
+sources:
+  - name: dev_dbt
+    database: DBT_SNOWFLAKE_LEARNING
+    schema: DBT_DEV
+    tables:
+      - name: WEATHER
